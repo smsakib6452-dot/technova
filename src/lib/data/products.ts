@@ -491,6 +491,143 @@ export const products: Product[] = [
     stock: 27,
     featured: true,
   },
+  {
+    id: 'p-aurora-edge',
+    slug: 'aurora-edge-smartphone',
+    name: 'Aurora Edge',
+    brand: 'NovaTech',
+    category: 'smartphones',
+    price: 82000,
+    compareAtPrice: 99000,
+    rating: 4.8,
+    reviews: 512,
+    description:
+      'A sleek all-rounder with an edge-to-edge 120Hz OLED display, advanced camera system and premium finish. The Aurora Edge delivers flagship performance for everyday productivity and entertainment.',
+    features: [
+      '6.5" 120Hz OLED display',
+      '50MP triple camera array',
+      '4500mAh battery with 65W fast charge',
+      'Wireless charging support',
+      'IP68 water resistance',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1512499617640-c2f999fe41b0?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1512499617640-c2f999fe41b0?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1545231005-d02a8f7d11ef?auto=format&fit=crop&w=1200&q=80',
+    ],
+    stock: 35,
+    badge: 'new',
+  },
+  {
+    id: 'p-aether-charger',
+    slug: 'aether-wireless-charger',
+    name: 'Aether Wireless Charger',
+    brand: 'FitCore',
+    category: 'accessories',
+    price: 4200,
+    rating: 4.5,
+    reviews: 128,
+    description:
+      'A premium fast wireless charger with magnetic alignment and multi-device support. The Aether Charger keeps your phone, earbuds and smartwatch powered without the clutter of cables.',
+    features: [
+      '15W fast wireless charging',
+      'Magnetic alignment for safe charging',
+      'Works with phones, earbuds and wearables',
+      'Non-slip silicone base',
+      'LED status indicator',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1518444341814-472a1de82dc6?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1518444341814-472a1de82dc6?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80',
+    ],
+    stock: 46,
+  },
+  {
+    id: 'p-rift-vr',
+    slug: 'rift-vr-headset',
+    name: 'Rift VR Headset',
+    brand: 'PlayTec',
+    category: 'gaming',
+    price: 74000,
+    rating: 4.7,
+    reviews: 219,
+    description:
+      'A high-fidelity VR headset with a wide field of view, low-latency tracking and ergonomic design. The Rift VR Headset brings immersive gaming and virtual experiences to life with crisp visuals and comfort.',
+    features: [
+      '110° field of view',
+      '90Hz refresh rate',
+      'Inside-out tracking',
+      'Comfort-fit head strap',
+      'Integrated spatial audio',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1512251933181-8c0f72b209b1?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1512251933181-8c0f72b209b1?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80',
+    ],
+    stock: 16,
+    badge: 'sale',
+  },
+  {
+    id: 'p-arcadia-monitor',
+    slug: 'arcadia-34-ultrawide-monitor',
+    name: 'Arcadia 34" Ultrawide Monitor',
+    brand: 'Voltix',
+    category: 'accessories',
+    price: 99500,
+    compareAtPrice: 115000,
+    rating: 4.8,
+    reviews: 256,
+    description:
+      'A curved 34" QHD ultrawide monitor with vivid color and a fast 180Hz refresh rate. Designed for gamers and creators who need more screen real estate and sharp visuals.',
+    features: [
+      '34" QHD curved display',
+      '180Hz refresh rate',
+      'HDR 600',
+      'Bluetooth speakers',
+      'Height-adjustable stand',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1518444341814-472a1de82dc6?auto=format&fit=crop&w=1200&q=80',
+    ],
+    stock: 12,
+    badge: 'new',
+  },
+  {
+    id: 'p-aurora-edge',
+    slug: 'aurora-edge-smartphone',
+    name: 'Aurora Edge',
+    brand: 'NovaTech',
+    category: 'smartphones',
+    price: 82000,
+    compareAtPrice: 99000,
+    rating: 4.8,
+    reviews: 512,
+    description:
+      'A sleek all-rounder with an edge-to-edge 120Hz OLED display, advanced camera system and premium finish. The Aurora Edge delivers flagship performance for everyday productivity and entertainment.',
+    features: [
+      '6.5" 120Hz OLED display',
+      '50MP triple camera array',
+      '4500mAh battery with 65W fast charge',
+      'Wireless charging support',
+      'IP68 water resistance',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1512499617640-c2f999fe41b0?auto=format&fit=crop&w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1512499617640-c2f999fe41b0?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1545231005-d02a8f7d11ef?auto=format&fit=crop&w=1200&q=80',
+    ],
+    stock: 35,
+    badge: 'new',
+  },
 ];
 
 export function getProductBySlug(slug: string) {

@@ -1,9 +1,10 @@
 'use client';
 
 import { X, ShoppingBag, Truck, Check, PartyPopper } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { PaymentMethod } from '@/lib/types';
 import { formatPrice, cn } from '@/lib/utils';
+import { PaymentLogo } from '@/components/ui/payment-logos';
 import { useHydrated } from '@/lib/hooks';
 import { useCartStore } from '@/store/cart';
 import { useOrdersStore } from '@/store/orders';
@@ -26,10 +27,10 @@ export function CartDrawer() {
   const [orderTotal, setOrderTotal] = useState(0);
   const [ordered, setOrdered] = useState(false);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOrdered(false);
     close();
-  };
+  }, [close]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -43,7 +44,7 @@ export function CartDrawer() {
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
     };
-  }, [isOpen, close]);
+  }, [isOpen, handleClose]);
 
   const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal());
   const progress = Math.min(100, (subtotal() / FREE_SHIPPING_THRESHOLD) * 100);
@@ -214,15 +215,15 @@ export function CartDrawer() {
                           <Check className="h-3 w-3" />
                         </span>
                       )}
-                      <span
-                        className={cn(
-                          'inline-block rounded-md px-2 py-0.5 text-[11px] font-bold text-white',
-                          method.className,
-                        )}
-                      >
-                        {method.label}
-                      </span>
-                      <span className="mt-1.5 block text-[11px] text-ink-400">{method.hint}</span>
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white shadow-sm">
+                          <PaymentLogo method={method.id} className="h-6 w-6" />
+                        </span>
+                        <div>
+                          <p className="text-sm font-semibold text-ink-900">{method.label}</p>
+                          <p className="mt-1 text-[11px] text-ink-400">{method.hint}</p>
+                        </div>
+                      </div>
                     </button>
                   ))}
                 </div>

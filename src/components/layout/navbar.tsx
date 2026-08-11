@@ -12,6 +12,7 @@ import { useCartStore } from '@/store/cart';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/catalog', label: 'Shop All' },
+  { href: '/admin/dashboard', label: 'Admin Dashboard' },
 ];
 
 export function Navbar() {

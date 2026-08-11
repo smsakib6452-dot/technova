@@ -62,7 +62,7 @@ export function CatalogContent() {
     }
 
     return list;
-  }, [activeCategory, query, sort]);
+  }, [activeCategory, products, query, sort]);
 
   const setCategory = (slug: string) => {
     const params = new URLSearchParams(searchParams.toString());
