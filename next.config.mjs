@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  basePath: '/technova',
+  assetPrefix: '/technova/',
   trailingSlash: true,
   images: {
     unoptimized: true,
