@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, RotateCcw, ShieldCheck, Truck, Headphones } from 'lucide-react';
-import { categories, getFeaturedProducts } from '@/lib/data/products';
+import { categories } from '@/lib/data/products';
 import { Button } from '@/components/ui/button';
-import { ProductCard } from '@/components/product/product-card';
+import { FeaturedProducts } from '@/components/product/featured-products';
 
 const valueProps = [
   {
@@ -29,8 +29,6 @@ const valueProps = [
 ];
 
 export default function HomePage() {
-  const featured = getFeaturedProducts();
-
   return (
     <>
       <section className="relative overflow-hidden bg-ink-900 text-white">
@@ -138,11 +136,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {featured.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <FeaturedProducts />
         </div>
       </section>
 

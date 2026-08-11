@@ -2,15 +2,15 @@
 
 import { X, ShoppingBag, Truck, Check, PartyPopper } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import type { PaymentMethod } from '@/lib/types';
 import { formatPrice, cn } from '@/lib/utils';
 import { useHydrated } from '@/lib/hooks';
 import { useCartStore } from '@/store/cart';
+import { useOrdersStore } from '@/store/orders';
 import { Button } from '@/components/ui/button';
 import { CartLineItem } from '@/components/cart/cart-line-item';
 
 const FREE_SHIPPING_THRESHOLD = 25000;
-
-type PaymentMethod = 'bkash' | 'nagad' | 'cod';
 
 const paymentMethods: { id: PaymentMethod; label: string; hint: string; className: string }[] = [
   { id: 'bkash', label: 'bKash', hint: 'Mobile wallet', className: 'bg-[#e2136e]' },
@@ -20,6 +20,7 @@ const paymentMethods: { id: PaymentMethod; label: string; hint: string; classNam
 
 export function CartDrawer() {
   const { items, isOpen, close, clear, subtotal, count } = useCartStore();
+  const addOrder = useOrdersStore((s) => s.addOrder);
   const hydrated = useHydrated();
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('bkash');
   const [orderTotal, setOrderTotal] = useState(0);
@@ -48,7 +49,28 @@ export function CartDrawer() {
   const progress = Math.min(100, (subtotal() / FREE_SHIPPING_THRESHOLD) * 100);
 
   const handleCheckout = () => {
-    setOrderTotal(subtotal());
+    const currentItems = items;
+    const total = subtotal();
+    addOrder({
+      id: `TN-${Date.now().toString().slice(-5)}`,
+      customer: {
+        name: 'Guest Customer',
+        phone: '-',
+        address: '-',
+        city: '-',
+      },
+      items: currentItems.map((item) => ({
+        productId: item.product.id,
+        name: item.product.name,
+        price: item.product.price,
+        quantity: item.quantity,
+      })),
+      subtotal: total,
+      paymentMethod,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    });
+    setOrderTotal(total);
     setOrdered(true);
     clear();
   };

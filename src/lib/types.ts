@@ -33,3 +33,29 @@ export type CartItem = {
 };
 
 export type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'rating' | 'newest';
+
+export type PaymentMethod = 'bkash' | 'nagad' | 'cod';
+
+export type OrderStatus = 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+
+export type OrderItem = {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+export type Order = {
+  id: string;
+  customer: {
+    name: string;
+    phone: string;
+    address: string;
+    city: string;
+  };
+  items: OrderItem[];
+  subtotal: number;
+  paymentMethod: PaymentMethod;
+  status: OrderStatus;
+  createdAt: string;
+};

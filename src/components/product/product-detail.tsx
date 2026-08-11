@@ -13,9 +13,9 @@ import {
   RotateCcw,
   ShieldCheck,
 } from 'lucide-react';
-import { getRelatedProducts } from '@/lib/data/products';
 import type { Product } from '@/lib/types';
 import { cn, discountPercent } from '@/lib/utils';
+import { useCatalogStore } from '@/store/catalog';
 import { useCartStore } from '@/store/cart';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -41,14 +41,21 @@ const perks = [
   { icon: ShieldCheck, label: '2-year warranty included' },
 ];
 
-export function ProductDetail({ product }: { product: Product }) {
+export function ProductDetail({ product: staticProduct }: { product: Product }) {
   const addItem = useCartStore((s) => s.addItem);
   const openCart = useCartStore((s) => s.open);
+  const catalogProducts = useCatalogStore((s) => s.products);
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [added, setAdded] = useState(false);
 
-  const related = getRelatedProducts(product);
+  const product =
+    catalogProducts.find((p) => p.slug === staticProduct.slug) ?? staticProduct;
+
+  const related = catalogProducts
+    .filter((p) => p.id !== product.id)
+    .sort((a, b) => Number(b.category === product.category) - Number(a.category === product.category))
+    .slice(0, 4);
   const discount = discountPercent(product.price, product.compareAtPrice);
   const inStock = product.stock > 0;
 

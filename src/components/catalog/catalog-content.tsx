@@ -3,9 +3,10 @@
 import { useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ChevronDown, PackageSearch } from 'lucide-react';
-import { categories, products } from '@/lib/data/products';
+import { categories } from '@/lib/data/products';
 import type { SortOption } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import { useCatalogStore } from '@/store/catalog';
 import { ProductCard } from '@/components/product/product-card';
 import { Button } from '@/components/ui/button';
 
@@ -24,6 +25,7 @@ export function CatalogContent() {
   const activeCategory = searchParams.get('category') ?? 'all';
   const query = (searchParams.get('q') ?? '').toLowerCase();
   const [sort, setSort] = useState<SortOption>('featured');
+  const products = useCatalogStore((s) => s.products);
 
   const filtered = useMemo(() => {
     let list = [...products];
