@@ -1,22 +1,38 @@
 'use client';
 
-import { X, ShoppingBag, Truck } from 'lucide-react';
-import { useEffect } from 'react';
+import { X, ShoppingBag, Truck, Check, PartyPopper } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { formatPrice, cn } from '@/lib/utils';
 import { useHydrated } from '@/lib/hooks';
 import { useCartStore } from '@/store/cart';
 import { Button } from '@/components/ui/button';
 import { CartLineItem } from '@/components/cart/cart-line-item';
 
-const FREE_SHIPPING_THRESHOLD = 150;
+const FREE_SHIPPING_THRESHOLD = 25000;
+
+type PaymentMethod = 'bkash' | 'nagad' | 'cod';
+
+const paymentMethods: { id: PaymentMethod; label: string; hint: string; className: string }[] = [
+  { id: 'bkash', label: 'bKash', hint: 'Mobile wallet', className: 'bg-[#e2136e]' },
+  { id: 'nagad', label: 'Nagad', hint: 'Mobile wallet', className: 'bg-[#f6921e]' },
+  { id: 'cod', label: 'Cash on Delivery', hint: 'Pay on arrival', className: 'bg-ink-800' },
+];
 
 export function CartDrawer() {
   const { items, isOpen, close, clear, subtotal, count } = useCartStore();
   const hydrated = useHydrated();
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('bkash');
+  const [orderTotal, setOrderTotal] = useState(0);
+  const [ordered, setOrdered] = useState(false);
+
+  const handleClose = () => {
+    setOrdered(false);
+    close();
+  };
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape') handleClose();
     };
     if (isOpen) {
       document.addEventListener('keydown', onKeyDown);
@@ -31,6 +47,15 @@ export function CartDrawer() {
   const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal());
   const progress = Math.min(100, (subtotal() / FREE_SHIPPING_THRESHOLD) * 100);
 
+  const handleCheckout = () => {
+    setOrderTotal(subtotal());
+    setOrdered(true);
+    clear();
+  };
+
+  const selectedMethod =
+    paymentMethods.find((m) => m.id === paymentMethod) ?? paymentMethods[0];
+
   return (
     <div className={cn('fixed inset-0 z-50', !isOpen && 'pointer-events-none')}>
       <div
@@ -38,7 +63,7 @@ export function CartDrawer() {
           'absolute inset-0 bg-ink-900/50 backdrop-blur-sm transition-opacity duration-300',
           isOpen ? 'opacity-100' : 'opacity-0',
         )}
-        onClick={close}
+        onClick={handleClose}
         aria-hidden="true"
       />
 
@@ -54,8 +79,8 @@ export function CartDrawer() {
         <header className="flex items-center justify-between border-b border-ink-200 bg-white px-5 py-4">
           <h2 className="flex items-center gap-2 text-lg font-bold text-ink-900">
             <ShoppingBag className="h-5 w-5 text-brand-600" />
-            Your Cart
-            {hydrated && count() > 0 && (
+            {ordered ? 'Order Confirmed' : 'Your Cart'}
+            {!ordered && hydrated && count() > 0 && (
               <span className="rounded-full bg-brand-600 px-2 py-0.5 text-xs font-semibold text-white">
                 {count()}
               </span>
@@ -63,7 +88,7 @@ export function CartDrawer() {
           </h2>
           <button
             type="button"
-            onClick={close}
+            onClick={handleClose}
             className="flex h-9 w-9 items-center justify-center rounded-full text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900"
             aria-label="Close cart"
           >
@@ -71,7 +96,29 @@ export function CartDrawer() {
           </button>
         </header>
 
-        {hydrated && items.length === 0 ? (
+        {ordered ? (
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success-light">
+              <PartyPopper className="h-10 w-10 text-success" />
+            </div>
+            <h3 className="text-2xl font-bold text-ink-900">Thank you for your order!</h3>
+            <p className="max-w-xs text-sm leading-relaxed text-ink-500">
+              Your order of <strong>{formatPrice(orderTotal)}</strong> is confirmed. Pay with{' '}
+              <span
+                className={cn(
+                  'inline-block rounded-md px-2 py-0.5 text-xs font-bold text-white',
+                  selectedMethod.className,
+                )}
+              >
+                {selectedMethod.label}
+              </span>{' '}
+              — a payment request will be sent to your registered mobile number.
+            </p>
+            <Button onClick={handleClose} className="mt-2 w-full">
+              Done
+            </Button>
+          </div>
+        ) : hydrated && items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6 text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-ink-100">
               <ShoppingBag className="h-8 w-8 text-ink-400" />
@@ -80,7 +127,7 @@ export function CartDrawer() {
             <p className="text-sm text-ink-500">
               Add some tech to your collection and it will show up here.
             </p>
-            <Button onClick={close} className="mt-2">
+            <Button onClick={handleClose} className="mt-2">
               Continue shopping
             </Button>
           </div>
@@ -119,10 +166,48 @@ export function CartDrawer() {
                 </span>
               </div>
               <p className="mt-1 text-xs text-ink-400">
-                Taxes and shipping calculated at checkout.
+                Taxes and delivery calculated at checkout.
               </p>
-              <Button size="lg" className="mt-3 w-full">
-                Checkout
+
+              <fieldset className="mt-3">
+                <legend className="text-xs font-semibold uppercase tracking-wide text-ink-500">
+                  Payment method
+                </legend>
+                <div className="mt-2 grid grid-cols-3 gap-2">
+                  {paymentMethods.map((method) => (
+                    <button
+                      key={method.id}
+                      type="button"
+                      onClick={() => setPaymentMethod(method.id)}
+                      className={cn(
+                        'relative rounded-xl border-2 p-3 text-left transition-all',
+                        paymentMethod === method.id
+                          ? 'border-brand-600 bg-brand-50'
+                          : 'border-ink-200 bg-white hover:border-ink-300',
+                      )}
+                      aria-pressed={paymentMethod === method.id}
+                    >
+                      {paymentMethod === method.id && (
+                        <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-white">
+                          <Check className="h-3 w-3" />
+                        </span>
+                      )}
+                      <span
+                        className={cn(
+                          'inline-block rounded-md px-2 py-0.5 text-[11px] font-bold text-white',
+                          method.className,
+                        )}
+                      >
+                        {method.label}
+                      </span>
+                      <span className="mt-1.5 block text-[11px] text-ink-400">{method.hint}</span>
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <Button size="lg" className="mt-4 w-full" onClick={handleCheckout}>
+                Checkout with {selectedMethod.label}
               </Button>
               <div className="mt-2 flex items-center justify-between">
                 <button
@@ -134,7 +219,7 @@ export function CartDrawer() {
                 </button>
                 <button
                   type="button"
-                  onClick={close}
+                  onClick={handleClose}
                   className="text-xs font-medium text-ink-400 underline-offset-2 hover:text-ink-900 hover:underline"
                 >
                   Continue shopping

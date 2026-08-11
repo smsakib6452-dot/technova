@@ -58,8 +58,8 @@ export const products: Product[] = [
     name: 'Aurora X15 Ultrabook',
     brand: 'NovaTech',
     category: 'laptops',
-    price: 1299,
-    compareAtPrice: 1499,
+    price: 165000,
+    compareAtPrice: 189000,
     rating: 4.8,
     reviews: 342,
     description:
@@ -87,7 +87,7 @@ export const products: Product[] = [
     name: 'ThunderBook Pro 16',
     brand: 'Voltix',
     category: 'laptops',
-    price: 1899,
+    price: 245000,
     rating: 4.7,
     reviews: 218,
     description:
@@ -115,8 +115,8 @@ export const products: Product[] = [
     name: 'Pixel9 Pro',
     brand: 'Google',
     category: 'smartphones',
-    price: 999,
-    compareAtPrice: 1099,
+    price: 125000,
+    compareAtPrice: 139000,
     rating: 4.9,
     reviews: 1247,
     description:
@@ -144,8 +144,8 @@ export const products: Product[] = [
     name: 'Whisper Buds Pro',
     brand: 'Echo Labs',
     category: 'audio',
-    price: 199,
-    compareAtPrice: 249,
+    price: 16000,
+    compareAtPrice: 20000,
     rating: 4.6,
     reviews: 892,
     description:
@@ -172,7 +172,7 @@ export const products: Product[] = [
     name: 'Bassline 900 Headphones',
     brand: 'Echo Labs',
     category: 'audio',
-    price: 349,
+    price: 45000,
     rating: 4.7,
     reviews: 431,
     description:
@@ -199,7 +199,7 @@ export const products: Product[] = [
     name: 'Pulse Watch Series 7',
     brand: 'Voltix',
     category: 'wearables',
-    price: 429,
+    price: 45000,
     rating: 4.5,
     reviews: 654,
     description:
@@ -226,7 +226,7 @@ export const products: Product[] = [
     name: 'Motion Fit Band',
     brand: 'FitCore',
     category: 'wearables',
-    price: 79,
+    price: 6500,
     rating: 4.3,
     reviews: 1102,
     description:
@@ -252,8 +252,8 @@ export const products: Product[] = [
     name: 'Nebula Pro Controller',
     brand: 'PlayTec',
     category: 'gaming',
-    price: 69,
-    compareAtPrice: 89,
+    price: 8500,
+    compareAtPrice: 11000,
     rating: 4.6,
     reviews: 978,
     description:
@@ -280,7 +280,7 @@ export const products: Product[] = [
     name: 'Opti Key 75',
     brand: 'NovaTech',
     category: 'accessories',
-    price: 149,
+    price: 18000,
     rating: 4.7,
     reviews: 523,
     description:
@@ -307,7 +307,7 @@ export const products: Product[] = [
     name: 'Glide X2 Mouse',
     brand: 'FitCore',
     category: 'accessories',
-    price: 59,
+    price: 6000,
     rating: 4.4,
     reviews: 876,
     description:
@@ -333,7 +333,7 @@ export const products: Product[] = [
     name: 'Titan Rtx Pro 24GB',
     brand: 'PlayTec',
     category: 'gaming',
-    price: 1599,
+    price: 210000,
     rating: 4.9,
     reviews: 167,
     description:
@@ -361,8 +361,8 @@ export const products: Product[] = [
     name: 'Sonar 360 Speaker',
     brand: 'Echo Labs',
     category: 'audio',
-    price: 129,
-    compareAtPrice: 159,
+    price: 14000,
+    compareAtPrice: 18000,
     rating: 4.5,
     reviews: 288,
     description:
@@ -389,7 +389,7 @@ export const products: Product[] = [
     name: 'Vista Tablet 11',
     brand: 'NovaTech',
     category: 'laptops',
-    price: 599,
+    price: 72000,
     rating: 4.6,
     reviews: 345,
     description:
@@ -415,8 +415,8 @@ export const products: Product[] = [
     name: 'Zenith Cam Vlog',
     brand: 'PixelPro',
     category: 'accessories',
-    price: 749,
-    compareAtPrice: 899,
+    price: 95000,
+    compareAtPrice: 115000,
     rating: 4.7,
     reviews: 214,
     description:
@@ -443,7 +443,7 @@ export const products: Product[] = [
     name: 'SkyFrame 34" Monitor',
     brand: 'Voltix',
     category: 'accessories',
-    price: 649,
+    price: 78000,
     rating: 4.8,
     reviews: 391,
     description:
@@ -470,7 +470,7 @@ export const products: Product[] = [
     name: 'Nexus G7',
     brand: 'Voltix',
     category: 'smartphones',
-    price: 799,
+    price: 95000,
     rating: 4.5,
     reviews: 748,
     description:

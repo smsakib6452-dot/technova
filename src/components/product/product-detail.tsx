@@ -36,7 +36,7 @@ const badgeLabels: Record<string, string> = {
 };
 
 const perks = [
-  { icon: Truck, label: 'Free shipping over $150' },
+  { icon: Truck, label: 'Free shipping over ৳25,000' },
   { icon: RotateCcw, label: '30-day easy returns' },
   { icon: ShieldCheck, label: '2-year warranty included' },
 ];

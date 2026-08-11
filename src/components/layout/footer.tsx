@@ -83,9 +83,24 @@ export function Footer() {
       </div>
 
       <div className="border-t border-ink-800">
-        <div className="container flex flex-col items-center justify-between gap-2 py-6 text-xs text-ink-500 sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Technova Inc. All rights reserved.</p>
-          <p>Demo storefront &middot; Product images via Unsplash &amp; Pexels</p>
+        <div className="container flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
+          <p className="text-xs text-ink-500">
+            &copy; {new Date().getFullYear()} Technova Inc. All rights reserved.
+          </p>
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-4">
+            <p className="text-xs text-ink-500">We accept</p>
+            <div className="flex items-center gap-2">
+              <span className="rounded-md bg-[#e2136e] px-2.5 py-1 text-[11px] font-bold text-white">
+                bKash
+              </span>
+              <span className="rounded-md bg-[#f6921e] px-2.5 py-1 text-[11px] font-bold text-white">
+                Nagad
+              </span>
+              <span className="rounded-md bg-ink-700 px-2.5 py-1 text-[11px] font-bold text-white">
+                Cash on Delivery
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

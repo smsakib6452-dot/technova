@@ -9,7 +9,7 @@ const valueProps = [
   {
     icon: Truck,
     title: 'Free Fast Shipping',
-    description: 'Free delivery on orders over $150, usually within 3 days.',
+    description: 'Free delivery on orders over ৳25,000, usually within 3 days.',
   },
   {
     icon: RotateCcw,

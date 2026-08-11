@@ -6,11 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const formatted = new Intl.NumberFormat('en-IN', {
     minimumFractionDigits: price % 1 === 0 ? 0 : 2,
   }).format(price);
+  return `৳${formatted}`;
 }
 
 export function discountPercent(price: number, compareAtPrice?: number) {

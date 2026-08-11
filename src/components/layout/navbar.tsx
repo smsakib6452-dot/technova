@@ -41,7 +41,7 @@ export function Navbar() {
       <div className="bg-ink-900 text-white">
         <div className="container flex items-center justify-center gap-2 py-2 text-xs font-medium tracking-wide">
           <Zap className="h-3.5 w-3.5 text-warning" />
-          Free shipping on orders over $150 &middot; 30-day easy returns
+          Free shipping on orders over ৳25,000 &middot; 30-day easy returns
         </div>
       </div>
 
