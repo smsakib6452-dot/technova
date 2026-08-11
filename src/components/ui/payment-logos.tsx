@@ -5,10 +5,18 @@ export function BkashLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" role="img" aria-label="bKash logo" {...props}>
       <rect width="24" height="24" rx="6" fill="#e2136e" />
-      <path
-        d="M8 7h4.2c1.9 0 3.4.5 4.6 1.6 1.2 1.1 1.8 2.7 1.8 4.8 0 2-0.6 3.6-1.8 4.7-1.2 1.1-2.7 1.6-4.6 1.6H8V7Zm1.7 6.2h1.8c1.2 0 2.1-.2 2.7-.8.6-.6.9-1.5.9-2.6 0-1.1-.3-1.9-.9-2.5-.6-.6-1.5-.8-2.7-.8H9.7v6.7Zm-1.5-.8h-.7v2.8h.7v-2.8Z"
+      <text
+        x="50%"
+        y="52%"
         fill="#fff"
-      />
+        fontFamily="Inter, system-ui, sans-serif"
+        fontWeight="700"
+        fontSize="10"
+        textAnchor="middle"
+        dominantBaseline="middle"
+      >
+        bKash
+      </text>
     </svg>
   );
 }
@@ -17,10 +25,18 @@ export function NagadLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" role="img" aria-label="Nagad logo" {...props}>
       <rect width="24" height="24" rx="6" fill="#f6921e" />
-      <path
-        d="M7 7h3.5l3.8 6.7V7h3.7v10h-3.5l-3.8-6.7V17H7V7Z"
+      <text
+        x="50%"
+        y="52%"
         fill="#fff"
-      />
+        fontFamily="Inter, system-ui, sans-serif"
+        fontWeight="700"
+        fontSize="10"
+        textAnchor="middle"
+        dominantBaseline="middle"
+      >
+        nagad
+      </text>
     </svg>
   );
 }
