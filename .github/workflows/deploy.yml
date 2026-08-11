@@ -17,6 +17,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Set this secret in the repository secrets (ADMIN_HASH).
+      # The value should be the SHA-256 hex digest of your desired admin password.
+      NEXT_PUBLIC_ADMIN_HASH: ${{ secrets.ADMIN_HASH }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
